@@ -9,3 +9,12 @@ for i in range(K):
     numerator *= (K-i)*(N-K-i)
 print(int(denominator/numerator))
 """
+import sys
+N,K = map(int,sys.stdin.readline().split())
+denominator = 1
+numerator = 1
+for i in range(N):
+    denominator *= (N-i)
+for i in range(K):
+    numerator *= (K-i)*(N-K-i)
+print(int(denominator/numerator))
