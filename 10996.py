@@ -5,4 +5,3 @@ for i in range(N):
         print("*")
     else:
         print("*")
-        for k in
