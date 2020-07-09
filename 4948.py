@@ -1,4 +1,4 @@
-#1번 시도 - 시간 초과
+#1번 시도 - 시간 초과 -> PyPy3로 돌리니깐 시간 문제 해결됨
 import sys
 import math
 def isPrime(num):
