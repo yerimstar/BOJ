@@ -25,8 +25,9 @@ for i in range(M,N+1):
             print(i)
 """
 import sys
+import math
 def isPrime(num):
-    for i in range(2,int(num**0.5)+1):
+    for i in range(2,int(math.sqrt(num))+1):
         if num%i == 0:
             return False
     return True
