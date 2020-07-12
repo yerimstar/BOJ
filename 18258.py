@@ -1,40 +1,43 @@
 import sys
-import collections
-queue = collections.deque([])
+from collections import deque
+dq = deque([])
 def push(X):
-    queue.append(X)
-    print(queue[-1])
+    dq.append(X)
 def pop():
-    print(queue.popleft())
+    if len(dq) == 0:
+        print("-1")
+    else:
+        print(dq.popleft())
 def size():
-    print(len(queue))
+    print(len(dq))
 def empty():
-    if len(queue) == 0:
+    if len(dq) == 0:
         print("1")
     else:
         print("0")
 def front():
-    if len(queue) == 0:
+    if len(dq) == 0:
         print("-1")
     else:
-        print(queue[-1])
+        print(dq[0])
 def back():
-    if len(queue) == 0:
+    if len(dq) == 0:
         print("-1")
     else:
-        print(queue[0])
+        print(dq[-1])
+
 N = int(sys.stdin.readline())
 for i in range(N):
-    func = sys.stdin.readline().split()
-    if 'push' in func:
-        push(int(func[-1]))
-    elif 'pop' in func:
+    function = sys.stdin.readline().split()
+    if function[0] == "push":
+        push(int(function[1]))
+    elif function[0] == "pop":
         pop()
-    elif 'size' in func:
+    elif function[0] == "size":
         size()
-    elif 'empty' in func:
+    elif function[0] == "empty":
         empty()
-    elif 'front' in func:
+    elif function[0] == "front":
         front()
-    elif 'back' in func:
+    elif function[0] == "back":
         back()
