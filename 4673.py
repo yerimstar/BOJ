@@ -10,10 +10,6 @@ for number in numbers:
             pass
         else:
             no_self_num.append(number+a+b+c+d)
-print(len(no_self_num))
-for i in range(10001):
-    print(i)
-    if no_self_num[i] in numbers:
-        pass
-    else:
-        print(numbers[i])
+sort_difference = sorted(set(numbers).difference(set(no_self_num)))
+for d in sort_difference:
+    print(d)
