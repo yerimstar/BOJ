@@ -1,3 +1,4 @@
+import sys
 def check(x,y,i):
     if i in number[x]:
         return False
@@ -18,6 +19,7 @@ def sudoku(count):
             for j in i:
                 print(j,end = ' ')
             print()
+        sys.exit()
     else:
         for i in range(1,10):
             x = zero[count][0]
