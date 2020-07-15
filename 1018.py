@@ -33,7 +33,6 @@ for m in range(M - 8 + 1):
 
 print(min(final_count))
 """
-
 import numpy as np
 M,N = map(int,input().split())
 chess = np.full((M,N),0)
