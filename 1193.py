@@ -25,4 +25,13 @@ while(1):
             exit()
     i += 1
 """
+X = int(input())
+i = 2
+s = 1
 
+while X > s:
+    s += i
+    i += 1
+
+a = [s-X+1,i-s+X-1][i%2]
+print(a,"/",i-a,sep = "")
