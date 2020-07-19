@@ -1,3 +1,4 @@
+import sys
 def most(num):
     most_num = {}
     for n in num:
@@ -16,7 +17,7 @@ def most(num):
     else:
         return sort_dict[1][0]
 
-N = int(input())
+N = int(sys.stdin.readline())
 num = []
 for i in range(N):
     num.append(int(input()))
