@@ -1,7 +1,6 @@
 """
-#Python3 - 시간 초과
-#PyPy3 - 메모리 초과
-X = int(input())
+#Python3 - 시간 초과 PyPy3 - 메모리 초과
+X= int(input())
 p = []
 i = 1
 def print_num(a):
