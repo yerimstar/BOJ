@@ -34,4 +34,5 @@ while X > s:
     i += 1
 
 a = [s-X+1,i-s+X-1][i%2]
+
 print(a,"/",i-a,sep = "")
