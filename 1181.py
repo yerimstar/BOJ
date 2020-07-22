@@ -9,7 +9,6 @@ new = []
 for w in words:
     if w not in new:
         new.append(w)
-print(new)
 
 
 
