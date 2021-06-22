@@ -1,34 +1,30 @@
 N = int(input())
 num = list(range(10))
 words = []
-alpha = {}
 tmp = {}
+new = {}
 
-for i in range(N):
-    word = input()
-    words.append(word)
-    for j in range(len(word)):
-        alpha.append((len(word)-j,word[j],0))
+for _ in range(N):
+    words.append(input())
 
-for a in alpha:
-    print(a[1])
+for word in words:
+    for i in range(len(word)):
+        if word[i] in tmp:
+            tmp[word[i]] += (10**(len(word)-i-1))
+        else:
+            tmp[word[i]] = (10**(len(word)-i-1))
 
+tmp = sorted(tmp.items(), key = lambda x : x[1], reverse= True)
 
-alpha.sort(key=lambda x : (x[0],alpha.count(x[1])),reverse=True)
-print(alpha)
-
-for a in alpha:
-    if a[1] in tmp: # 알파벳과 0~9 매칭
-        continue
-    else:
-        tmp[a[1]] = str(max(num))
-        num.remove(max(num))
+num = 9
+for i in range(len(tmp)):
+    new[tmp[i][0]] = num
+    num -= 1
 
 result = 0
-for i in range(N):
+for word in words:
     tmpresult = ""
-    for j in range(len(words[i])):
-        tmpresult += tmp[words[i][j]]
+    for w in word:
+        tmpresult += str(new[w])
     result += int(tmpresult)
-
 print(result)
