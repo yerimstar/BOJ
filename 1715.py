@@ -3,17 +3,25 @@ from queue import PriorityQueue
 N = int(input())
 que = PriorityQueue()
 result = 0
-tmpresult = 0
+
 
 for _ in range(N):
     que.put(int(input()))
 
-for i in range(N):
-    if i > 1:
-        tmpresult = result
-    result += (tmpresult + que.get())
-    print(result)
-
+if N == 1:
+    result = 0
+else:
+    for i in range(N):
+        tmp = que.get()
+        print("tmp = ",tmp)
+        if i == 0:
+            result += tmp
+        elif i == 1:
+            result += tmp
+            pretmpresult = result
+        else:
+            pretmpresult += tmp
+            result += pretmpresult
 print(result)
 
 
