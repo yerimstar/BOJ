@@ -1,22 +1,10 @@
-N,K = map(int,input().split())
-belt = list(map(int,input().split()))
-robots = [0] * N
+from collections import deque
+import sys
+
+N,K = map(int,sys.stdin.readline().split())
+belt = deque(list(map(int,sys.stdin.readline().split())))
+robots = deque([0] * N)
 cnt = 0
-
-def belt_move():
-    tmp = belt[-1]
-    for i in range(2 * N, 0, -1):
-        if i == 1:
-            belt[0] = tmp
-        else:
-            belt[i - 1] = belt[i - 2]
-
-def robot_move():
-    for i in range(N-1,-1,-1):
-        if i == 0:
-            robots[0] = 0
-        else:
-            robots[i] = robots[i-1]
 
 def max_index():
     for i in range(N-1,-1,-1):
@@ -30,8 +18,8 @@ while True:
     #1단계
     if robots[-1] == 1:
         robots[-1] = 0
-    belt_move()
-    robot_move()
+    belt.rotate()
+    robots.rotate()
     if robots[-1] == 1:
         robots[-1] = 0
 
@@ -50,7 +38,7 @@ while True:
         belt[0] -= 1
 
     #4단계
-    if len(list(filter(lambda x : x == 0, belt))) >= K:
+    if belt.count(0) >= K:
         break
 
 print(cnt)
