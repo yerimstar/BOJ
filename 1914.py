@@ -5,9 +5,9 @@ def hanoi(n,start,final,middle):
         print(start,final)
     else:
         hanoi(n-1,start,middle,final)
-        print(start,final) # 제일 큰 원반 move
+        print(start,final)
         hanoi(n-1,middle,final,start)
 
-print(2**N-1)
+print(2**N-1) # 계차수열
 if N <= 20:
     hanoi(N,1,3,2)
