@@ -18,6 +18,7 @@ if S != 0:
                             lst[check1][check2] = i + 1
                             tmp.append((check1, check2))
             virus[i] = tmp
+
 print(lst)
 print(virus)
 print(lst[X-1][Y-1])
