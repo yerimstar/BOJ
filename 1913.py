@@ -1,10 +1,11 @@
 N = int(input()) # NxN
 M = int(input()) # M의 위치는?
+
 array = [[0 for col in range(N)] for row in range(N)]
 num = int((N-1)/2)
 array[num][num] = 1
 check1 = num
-check2 = num # check는 현재 위치
+check2 = num
 
 lst_move = [[-1,0],[1,0],[0,-1],[-1,0]] #인덱스 방향 전환
 lst = [[0,1],[1,0],[0,-1],[-1,0]] #값이 이동하는 방향
