@@ -2,11 +2,12 @@ import sys
 n = int(sys.stdin.readline())
 num1,num2 = map(int ,sys.stdin.readline().split())
 m = int(sys.stdin.readline())
-graph = [[0] * (n+1) for _ in range(n+1)]
+graph = [[] for _ in range(n+1)]
 for _ in range(m):
     m1,m2 = map(int,sys.stdin.readline().split())
-    graph[m1][m2] = 1
-    graph[m2][m1] = 2
+    graph[m1].append(m2)
+    graph[m2].append(m1)
+print(graph)
 
 def dfs(start_node):
     visited = list()
