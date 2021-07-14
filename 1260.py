@@ -17,7 +17,7 @@ def dfs(start_node):
         node = stack.pop() # 제일 위에 있는 값 pop해줌
         if node not in visited:
             visited.append(node) # 방문한 노드 체크
-            stack.extend(reversed(list(set(graph[node])-set(visited)))) # list는 뺄셈 불가 -> set으로 처리, 정점 번호 작은 것부터 방문 -> reversed
+            stack.extend(sorted(list(set(graph[node])-set(visited)),reverse=True)) # list는 뺄셈 불가 -> set으로 처리, 정점 번호 작은 것부터 방문 -> reversed
     return visited
 
 
@@ -30,7 +30,7 @@ def bfs(start_node):
         node = queue.popleft()
         if node not in visited:
             visited.append(node)
-            queue.extend(list(set(graph[node])-set(visited))) # bfs -> queue여서 뒤에 정점들이 더 붙어도, 바로 인접했던 것들부터 방문함
+            queue.extend(sorted(list(set(graph[node])-set(visited)))) # bfs -> queue여서 뒤에 정점들이 더 붙어도, 바로 인접했던 것들부터 방문함
     return visited
 
 print(' '.join([str(a) for a in dfs(V)]))
