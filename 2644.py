@@ -10,21 +10,23 @@ for _ in range(m):
     graph[m1].append(m2)
     graph[m2].append(m1)
 
-def bfs(n1):
-    visited = [n1] # 시작 지점 방문 체크 해줘야 함
+def bfs(start,end):
+    visited = [start] # 시작 지점 방문 체크 해줘야 함
     queue = deque()
-    queue.append(n1)
-    cnt = 0
+    cnt = 1
+    queue.append([start,cnt]) # 해당 지점까지 촌수 저장
+
     while queue:
-        node = queue.popleft()
-        cnt += 1
+        node,cnt = queue.popleft()
         for i in range(len(graph[node])):
             tmp = graph[node][i]
-            if tmp == n2: # 도착 지점 발견
+            if tmp == end: # 도착 지점 발견
                 return cnt
             if tmp not in visited:
                 visited.append(tmp)
-                queue.append(tmp)
+                queue.append([tmp,cnt+1])
+
     return -1 # 찾지 못한 경우
 
-print(bfs(n1))
+print(bfs(n1,n2))
+
