@@ -20,7 +20,6 @@ def dfs(start_node):
             stack.extend(sorted(list(set(graph[node])-set(visited)),reverse=True)) # list는 뺄셈 불가 -> set으로 처리, 정점 번호 작은 것부터 방문 -> reversed
     return visited
 
-
 def bfs(start_node):
     visited = []
     queue = deque()

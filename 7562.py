@@ -2,6 +2,7 @@
 import sys
 from collections import deque
 T = int(sys.stdin.readline()) # test case의 개수
+
 dx = [-1,-2,-1,-2,1,2,1,2]
 dy = [2,1,-2,-1,2,1,-2,-1]
 

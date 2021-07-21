@@ -1,3 +1,4 @@
+# 촌수 계산
 import sys
 from collections import deque
 
@@ -29,4 +30,3 @@ def bfs(start,end):
     return -1 # 찾지 못한 경우
 
 print(bfs(n1,n2))
-
