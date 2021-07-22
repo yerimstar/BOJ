@@ -6,7 +6,7 @@ K개 직사각형 내부의 값들을 1로 처리, 나머지 값들은 0으로 �
 다만, count를 큰 범위, 작은 범위 2번 check
 """
 import sys
-sys.setrecursionlimit(10**6) # 파이싼 기본 재귀 깊이 제한 = 1000이기 때문에 제한에 걸림 !!
+sys.setrecursionlimit(10**6) # 파이싼 기본 재귀 깊이 제한 = 1000 -> 제한에 걸림 !! 이 부분 꼭 써줘야 함
 M,N,K = map(int,sys.stdin.readline().split())
 graph = [[0] * (N+1) for _ in range(M+1)]
 
@@ -25,7 +25,7 @@ def dfs(x,y,check,result):
         return True
     return False
 
-for i in range(K):
+for i in range(K): # 색칠된 부분을 1로 표시
     x1,y1,x2,y2 = map(int,sys.stdin.readline().split())
     for x in range(M-y2,M-y1):
         for y in range(x1,x2):

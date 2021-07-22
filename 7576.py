@@ -26,39 +26,36 @@ for n in range(N):
         elif tomato[n][m] == 0:
             zero_count += 1
 
-
 move = [[1,0],[-1,0],[0,1],[0,-1]]
 
 def bfs():
     queue = deque(graph)
     while queue:
         x,y = queue.popleft()
-        if tomato[x][y] == -1:
+        if tomato[x][y] == -1: # 토마토가 없는 경우는 무시
             continue
         else:
             for i in range(4):
                 dx = x + move[i][0]
                 dy = y + move[i][1]
-                if dx < 0 or dx >= N or dy < 0 or dy >= M:
+                if dx < 0 or dx >= N or dy < 0 or dy >= M: # 범위 체크
                     continue
-                if tomato[dx][dy] == 0:
-                    tomato[dx][dy] = tomato[x][y] + 1
+                if tomato[dx][dy] == 0: # 안 익은 토마토일 경우
+                    tomato[dx][dy] = tomato[x][y] + 1 # 익어라!!
                     queue.append([dx,dy])
 
-
-if zero_count > 0:
+if zero_count > 0: # 안 익은 토마토가 1개이상인 경우
     bfs()
     max = 0
-    print(tomato)
     for n in range(N):
         for m in range(M):
-            if tomato[n][m] == 0:
+            if tomato[n][m] == 0: # 토마토가 모두 익지는 못하는 상황
                 print(-1)
                 exit()
-            elif tomato[n][m] > max:
+            elif tomato[n][m] > max: # 최소 날짜 업데이트
                 max = tomato[n][m]
     print(max-1) # 시작값이 1이였으니까...최소 일수를 출력하는 거니까 -1 해줘야됨
-else:
+else: # 모든 토마토가 익어있는 상태
     print(0)
 
 
