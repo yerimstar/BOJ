@@ -17,52 +17,47 @@ tomato = []
 for _ in range(N):
     tomato.append(list(map(int,sys.stdin.readline().split())))
 
-zero_count = 0
-one_count = 0
 graph = []
-# graph = [[] for _ in range(max(M,N)+1)]
+zero_count = 0
 for n in range(N):
     for m in range(M):
-        if tomato[n][m] == 0:
-            zero_count += 1
-        elif tomato[n][m] == 1:
-            s = n
-            e = m
+        if tomato[n][m] == 1: # 익은 토마토 미리 체크
             graph.append([n,m])
-            one_count += 1
-print(graph)
+        elif tomato[n][m] == 0:
+            zero_count += 1
+
 
 move = [[1,0],[-1,0],[0,1],[0,-1]]
 
 def bfs():
-    queue = deque()
-    queue.append([[graph[0][0],graph[0][1]]])
-    print(queue)
-    cnt = 0
+    queue = deque(graph)
     while queue:
-        node = queue.popleft()
-        print("node = ",node)
-        cnt += 1
-        print("len =",len(node))
-        for i in range(len(node)):
-            x = node[i][0]
-            y = node[i][1]
-            if tomato[x][y] == 1:
-                tmp = []
-                for i in range(4):
-                    dx = x + move[i][0]
-                    dy = y + move[i][1]
-                    print("dx =", dx, "dy =", dy)
-                    if dx < 0 or dx >= N or dy < 0 or dy >= M:
-                        continue
-                    if tomato[dx][dy] == 0:
-                        tomato[dx][dy] = 1
-                        tmp.append([dx, dy])
-                queue.append(tmp)
-        print(tomato)
-    print(cnt)
+        x,y = queue.popleft()
+        if tomato[x][y] == -1:
+            continue
+        else:
+            for i in range(4):
+                dx = x + move[i][0]
+                dy = y + move[i][1]
+                if dx < 0 or dx >= N or dy < 0 or dy >= M:
+                    continue
+                if tomato[dx][dy] == 0:
+                    tomato[dx][dy] = tomato[x][y] + 1
+                    queue.append([dx,dy])
 
-if one_count == M*N:
-    print(0)
-else:
+
+if zero_count > 0:
     bfs()
+    max = 0
+    for n in range(N):
+        for m in range(M):
+            if tomato[n][m] == 0:
+                print(-1)
+                exit()
+            elif tomato[n][m] > max:
+                max = tomato[n][m]
+    print(max-1)
+else:
+    print(0)
+
+
