@@ -1,32 +1,40 @@
-import sys
-sys.setrecursionlimit(10**6)
+from collections import deque
 N = int(input())
 graph = []
 for _ in range(N):
-    graph.append(list(map(int,input().rstrip())))
+    graph.append(list(map(int,input())))
 
-def dfs(x,y,check,result):
-    if len(check) <= result:
-        check.append(0)
-    if x < 0 or x >= N or y < 0 or y >= N:
-        return False
-    if graph[x][y] == 1:
-        graph[x][y] = check[result]
-        check[result] += 1
-        dfs(x-1,y,check,result)
-        dfs(x+1,y,check,result)
-        dfs(x,y-1,check,result)
-        dfs(x,y+1,check,result)
-        return True
-    return False
+move = [[1,0],[-1,0],[0,1],[0,-1]]
 
-result = 0
-check = []
+def bfs(x,y):
+    check = 0
+    queue = deque()
+    queue.append([x,y])
+    while queue:
+        x,y = queue.popleft()
+        for i in range(4):
+            dx = x + move[i][0]
+            dy = y + move[i][1]
+            if dx < 0 or dx >= N or dy < 0 or dy >= N:
+                continue
+            if graph[dx][dy] == 1:
+                graph[dx][dy] = -1
+                queue.append([dx, dy])
+                check += 1
+    if check == 0 and graph[x][y] == 1:
+        return 1
+    else:
+        return check
+
+count = []
 for i in range(N):
     for j in range(N):
-        if dfs(i,j,check,result) == True:
-            result += 1
-print(result)
-check = sorted(check[:-1])
-for c in check:
-    print(c-1)
+        if graph[i][j] == 1:
+            check = bfs(i, j)
+            if check != 0:
+                count.append(check)
+
+print(len(count))
+count = sorted(count)
+for c in count:
+    print(c)
