@@ -49,6 +49,7 @@ def bfs():
 if zero_count > 0:
     bfs()
     max = 0
+    print(tomato)
     for n in range(N):
         for m in range(M):
             if tomato[n][m] == 0:
@@ -56,7 +57,7 @@ if zero_count > 0:
                 exit()
             elif tomato[n][m] > max:
                 max = tomato[n][m]
-    print(max-1)
+    print(max-1) # 시작값이 1이였으니까...최소 일수를 출력하는 거니까 -1 해줘야됨
 else:
     print(0)
 
