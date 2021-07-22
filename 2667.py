@@ -1,3 +1,4 @@
+# 단지번호 붙이기
 from collections import deque
 N = int(input())
 graph = []
