@@ -8,10 +8,10 @@ sys.setrecursionlimit(10**6)
 T = int(input())
 
 def dfs(x,y):
-    print("x =",x,"y =",y)
     if x < 0 or x >= N or y < 0 or y >= M:
         return False
     if field[x][y] == 1:
+        field[x][y] = 0
         dfs(x-1,y)
         dfs(x+1,y)
         dfs(x,y-1)
@@ -21,11 +21,10 @@ def dfs(x,y):
 
 for _ in range(T):
     M, N, K = map(int, input().split())
-    field = []
+    field = [[0] * (M+1) for _ in range(N+1)]
     for _ in range(K):
         X, Y = map(int, input().split())
         field[Y][X] = 1
-    print(field)
     cnt = 0
     for n in range(N):
         for m in range(M):
