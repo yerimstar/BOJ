@@ -8,43 +8,37 @@ import sys
 sys.setrecursionlimit(10**6)
 
 R,C = map(int,input().split())
-field = []
+land = []
 for r in range(R):
-    field.append(list(map(str,input())))
-print(field)
+    land.append(list(map(str,input())))
+k,v = 0,0
 
 move = [[-1,0],[1,0],[0,-1],[0,1]]
-def dfs(x,y,k,v):
-    print("x =",x,"y =",y)
-    print("field =",field[x][y])
-    if x < 0 or x >= C or y < 0 or y >= R:
-        return k,v
-    if field[x][y] == 'k':
-        field[x][y] = '#'
-        for i in range(4):
-            dx = x + move[i][0]
-            dy = y + move[i][1]
-            dfs(dx, dy,k,v)
-        k += 1
-    elif field[x][y] == 'v':
-        field[x][y] = '#'
-        for i in range(4):
-            dx = x + move[i][0]
-            dy = y + move[i][1]
-            dfs(dx, dy,k,v)
-        v += 1
-    return k,v
 
-lamb = 0
-wolf = 0
+def dfs(x,y):
+    global k,v
+    if land[x][y] == 'k':
+        k += 1
+    elif land[x][y] == 'v':
+        v += 1
+    land[x][y] = '#'
+    for i in range(4):
+        dx = x + move[i][0]
+        dy = y + move[i][1]
+        if dx < 0 or dx >= R or dy < 0 or dy >= C:
+            continue
+        if land[dx][dy] != '#':
+            dfs(dx, dy)
+
+lamb ,wolf = 0, 0
 for r in range(R):
     for c in range(C):
-        k = 0
-        v = 0
-        k,v = dfs(r,c,k,v)
-        if k != 0:
-            lamb += k
-        if wolf != 0:
-            wolf += c
+        if land[r][c] != '#':
+            k ,v = 0,0
+            dfs(r, c)
+            if k > v:
+                lamb += k
+            else:
+                wolf += v
 
 print(lamb,wolf)
