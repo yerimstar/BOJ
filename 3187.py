@@ -9,7 +9,7 @@ sys.setrecursionlimit(10**6)
 R,C = map(int,input().split())
 land = []
 for r in range(R):
-    land.append(list(map(str,input())))
+    land.append(list(input()))
 
 move = [[-1,0],[1,0],[0,-1],[0,1]]
 
