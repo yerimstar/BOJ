@@ -10,7 +10,6 @@ R,C = map(int,input().split())
 land = []
 for r in range(R):
     land.append(list(map(str,input())))
-k,v = 0,0
 
 move = [[-1,0],[1,0],[0,-1],[0,1]]
 

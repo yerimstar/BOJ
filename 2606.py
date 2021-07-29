@@ -5,6 +5,7 @@
 """
 import sys
 sys.setrecursionlimit(10**6)
+
 N = int(sys.stdin.readline()) # 컴퓨터의 수
 E = int(sys.stdin.readline()) # 컴퓨터 쌍의 수
 computer = [[] for _ in range(N+1)]

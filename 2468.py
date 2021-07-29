@@ -20,7 +20,7 @@ for _ in range(N):
         num = max(tmp)
 
 move = [[1,0],[-1,0],[0,1],[0,-1]]
-def dfs(tmp,x,y):
+def dfs(x,y):
     if x < 0 or x >= N or y < 0 or y >= N:
         return False
     if tmp[x][y] == 0:
@@ -28,7 +28,7 @@ def dfs(tmp,x,y):
         for i in range(4):
             dx = x + move[i][0]
             dy = y + move[i][1]
-            dfs(tmp,dx,dy)
+            dfs(dx,dy)
         return True
     return False
 
@@ -44,7 +44,7 @@ for n in range(num+1):
     cnt = 0
     for x in range(N):
         for y in range(N):
-            if dfs(tmp,x, y) == True:
+            if dfs(x, y) == True:
                 cnt += 1
     check.append(cnt)
 
