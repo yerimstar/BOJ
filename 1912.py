@@ -1,19 +1,14 @@
 # 연속합
 import sys
-max = -1000
 N = int(sys.stdin.readline())
 nums = list(map(int,sys.stdin.readline().rstrip().split()))
+sums = [0] * N
+sums[0] = nums[0]
 
-def fget_max(num):
-    global max
-    for i in range(N):
-        max_num = 0
-        if i+num <= N:
-            for j in range(i, i + num):
-                max_num += nums[j]
-            if max_num > max:
-                max = max_num
+for i in range(1,N):
+    if nums[i] > nums[i] + sums[i-1]:
+        sums[i] = nums[i]
+    else:
+        sums[i] = nums[i] + sums[i-1]
+print(max(sums))
 
-for i in range(1,N+1):
-    fget_max(i)
-print(max)
