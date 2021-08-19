@@ -20,4 +20,5 @@ for i in range(N):
             visited[i][right] += visited[i][j]
         if down < N:
             visited[down][j] += visited[i][j]
+
 print(visited[i][j])
