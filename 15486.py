@@ -1,5 +1,5 @@
 # 퇴사 2
-# 계단 문제와 유사함
+# 계단 + 가장 긴 감소하는 수열 문제와 유사함
 import sys
 N = int(sys.stdin.readline())
 T = [0] * (N)
