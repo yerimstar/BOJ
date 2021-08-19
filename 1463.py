@@ -9,4 +9,5 @@ for i in range(4,N+1):
         d[i] = min(d[i],d[i//2]+1) # 2로 나누어 떨어진다
     if i % 3 == 0:
         d[i] = min(d[i],d[i//3]+1) # 3으로 나누어 떨어진다.
+
 print(d[N])
