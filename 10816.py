@@ -1,11 +1,17 @@
-#2번 시도 - 시간 초과
+# 숫자 카드 2
 import sys
-N = int(sys.stdin.readline())
-N_list = list(map(int,sys.stdin.readline().split()))
-M = int(sys.stdin.readline())
-M_list = list(map(int,sys.stdin.readline().split()))
-for m in M_list:
-    print(N_list.count(m),end = ' ')
-#=> list의 count가 시간을 많이 쓰는 듯..이 부분을 해결해야됨
+N = int(sys.stdin.readline().rstrip())
+card1 = list(map(int,sys.stdin.readline().split()))
+M = int(sys.stdin.readline().rstrip())
+card2 = list(map(int,sys.stdin.readline().split()))
 
-
+result = []
+for card in card2:
+    print(card)
+    start = card1.index(card)
+    end = len(card1)
+    while(start <= end):
+        count = 0
+        mid = (start + end) // 2
+        for c in card1:
+            count +=
