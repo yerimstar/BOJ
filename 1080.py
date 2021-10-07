@@ -5,7 +5,10 @@ A = [list(map(int,input())) for _ in range(N)]
 B = [list(map(int,input()))for _ in range(N)]
 
 if N < 3 or M < 3: # 3x3 행렬을 만들 수 없는 경우 -> -1 출력 (반례)
-    print(-1)
+    if A == B:
+        print(0)
+    else:
+        print(-1)
     exit()
 
 count = 0
