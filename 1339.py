@@ -1,3 +1,4 @@
+# 단어 수학
 N = int(input())
 num = list(range(10))
 words = []
