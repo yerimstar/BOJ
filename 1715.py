@@ -1,3 +1,4 @@
+# 단어 정렬하기
 from queue import PriorityQueue
 
 N = int(input())
