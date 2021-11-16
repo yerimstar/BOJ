@@ -8,9 +8,7 @@ B = list(map(int,sys.stdin.readline().split()))
 
 S = 0
 for _ in range(N):
-    tmpA = min(A)
-    tmpB = max(B)
-    S += tmpA*tmpB
-    A.remove(tmpA)
-    B.remove(tmpB)
+    S += min(A) * max(B)
+    A.pop(A.index(min(A)))
+    B.pop(B.index(max(B)))
 print(S)
