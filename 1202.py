@@ -1,20 +1,31 @@
 # 보석 도둑
 import sys
+import heapq
+
 N,K = map(int,sys.stdin.readline().split())
-jewerly = list()
-bag = list()
+jewerly = []
+bags = []
 
 for _ in range(N):
     M,V = map(int,sys.stdin.readline().split())
-    jewerly.append([M,V])
-
-jewerly.sort(key = lambda x : x[0])
-print(jewerly)
+    heapq.heappush(jewerly,[M,V])
 
 for _ in range(K):
-    bag.append(int(sys.stdin.readline().strip()))
+    bags.append(int(sys.stdin.readline()))
+bags.sort()
 
-for i in range(K):
-    for j in range(N):
-        money += bag[i] // jewerly[j]
+result = []
+money = 0
+
+for bag in bags:
+    while jewerly and bag >= jewerly[0][0]:
+            [m,v] = heapq.heappop(jewerly)
+            heapq.heappush(result,-v)
+    if result:
+        money -= heapq.heappop(result)
+    elif not jewerly:
+        break
+print(money)
+
+
 
