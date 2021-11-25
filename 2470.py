@@ -1,5 +1,6 @@
 # 두 용액
 import sys
+
 N = sys.stdin.readline().strip() # 전체 용액의 수
 
 solution = list(map(int,sys.stdin.readline().split())) # 용액
@@ -14,5 +15,6 @@ elif len(acid_solution) == 0: # 알칼리성 용액만 있는 경우 -> 음수
     alkali_solution = sorted(alkali_solution) # 알칼리 용액 오름차순 정렬
     print(alkali_solution[-2],alkali_solution[-1])
 else: # 두 용액 모두 있는 경우
-    solution = sorted(solution)
-    print(solution[0],solution[-1])
+    mixed_solution = list(set([(min(x,y),max(x,y),abs(x+y)) for x in solution for y in solution if x != y]))
+    mixed_solution.sort(key=lambda x : x[2])
+    print(mixed_solution[0][0],mixed_solution[0][1])
