@@ -13,7 +13,7 @@ house.sort()
 
 # 이분 탐색
 def binary_search(house):
-    start = house[1] - house[0] # 최소 거리
+    start = 1 # 최소 거리
     end = house[-1] - house[0] # 최대 거리
     result = 0
 
