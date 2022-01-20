@@ -10,24 +10,27 @@ for _ in range(M):
     A,B = map(int,sys.stdin.readline().split())
     graph[A].append(B)
 
-visited = [False] * (N+1)
-check = 0
-
 def shortdistance(graph,K,X):
-    global check
+    result = []
     queue = deque()
+    visited = [False] * (N + 1)
+
     queue.append((X,0))
     while queue:
         node,distance = queue.popleft()
+        visited[node] = True
         if distance == K:
-            print(node)
-            check += 1
+            result.append(node)
         elif distance < K:
             for g in graph[node]:
                 if not visited[g]:
                     visited[g] = True
                     queue.append((g,distance + 1))
+    if len(result) == 0:
+        print("-1")
+    else:
+        result.sort()
+        for i in range(len(result)):
+            print(result[i])
 
 shortdistance(graph,K,X)
-if check == 0:
-    print("-1")
