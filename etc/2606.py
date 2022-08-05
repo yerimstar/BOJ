@@ -1,7 +1,7 @@
 # 바이러스
 """
 인접 리스트 활용하여 시작 노드와 연결된 노드의 수를 구해주면 됨
--> DFS, BFS 둘다 가능
+-> DFS, BFS,DFS 둘다 가능
 """
 import sys
 sys.setrecursionlimit(10**6)

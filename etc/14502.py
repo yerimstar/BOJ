@@ -3,7 +3,7 @@
 1. 벽 3개 세우기
 2. 바이러스 확산
 3. 안전영역 최댓값 갱신
-BFS / DFS 활용해야 할 것 같음
+BFS,DFS / DFS 활용해야 할 것 같음
 """
 import copy
 import sys

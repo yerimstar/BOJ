@@ -3,7 +3,7 @@
 """
 각 연결된 값들 그래프로 만들기 -> 인접 리스트
 BFS활용 -> deque -> popleft할 때마다 cnt 1증가 , 찾아야 하는 값 만나면 멈춤
-유저수 N개 -> 1~N까지 BFS 테스트했을 때 합이 최소인 유저 구하기
+유저수 N개 -> 1~N까지 BFS,DFS 테스트했을 때 합이 최소인 유저 구하기
 """
 import sys
 from collections import deque
