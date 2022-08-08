@@ -1,23 +1,16 @@
+import sys
 # 등수 매기기
-N = int(input())
+N = int(sys.stdin.readline())
 # 최종 등수
 ranks = []
-# 가능한 등수
-nums = [i+1 for i in range(N)]
 # 불만도 점수
 score = 0
 for _ in range(N):
-    rank = int(input())
+    rank = int(sys.stdin.readline())
     ranks.append(rank)
 
 ranks.sort()
-check = list(set(nums)-set(ranks))
 
-for i in range(N-1):
-    if ranks[i] == ranks[i-1]:
-        score += abs(check[0]-ranks[i])
-        check.remove(check[0])
-    else:
-        pass
-
+for i in range(1,N+1):
+    score += abs(ranks[i-1]-i)
 print(score)
