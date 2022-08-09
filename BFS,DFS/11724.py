@@ -1,30 +1,28 @@
 # 연결 요소의 개수
 from collections import deque
-def bfs(graph,v,visited):
-    if visited[v] == True:
-        return False
-    visited[v] = True
-    queue = deque()
-    queue.append(v)
+import sys
+
+def bfs(graph,start,visited):
+    queue = deque([start])
+    visited[start] = True
     while queue:
         v = queue.popleft()
         for i in graph[v]:
-            if visited[i] == False:
-                visited[i] = True
+            if not visited[i]:
                 queue.append(i)
-    return True
+                visited[i] = True
 
-n, m = map(int,input().split())
+n, m = map(int,sys.stdin.readline().split())
 graph = [[] for _ in range(n+1)]
 for _ in range(m):
-    a,b = map(int,input().split())
+    a,b = map(int,sys.stdin.readline().split())
     graph[a].append(b)
     graph[b].append(a)
 
 visited = [False for _ in range(n+1)]
 result = 0
 for i in range(1,n+1):
-    if visited[i] == False:
-        if bfs(graph, i, visited):
-            result += 1
+    if not visited[i]:
+        bfs(graph, i, visited)
+        result += 1
 print(result)
