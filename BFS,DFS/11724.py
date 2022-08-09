@@ -24,6 +24,7 @@ for _ in range(m):
 visited = [False for _ in range(n+1)]
 result = 0
 for i in range(1,n+1):
-    if bfs(graph,i,visited):
-        result += 1
+    if visited[i] == False:
+        if bfs(graph, i, visited):
+            result += 1
 print(result)
