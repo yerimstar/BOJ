@@ -2,21 +2,21 @@
 import sys
 
 def fibo(n):
-    global zero_cnt,one_cnt
-    if n == 0:
-        zero_cnt += 1
-        return 0
-    elif n == 1:
-        one_cnt += 1
-        return 1
-    else:
-        return fibo(n-1)+fibo(n-2)
+	# 테이블 갱신
+    z[0] = 1
+    z[1] = 0
+    o[0] = 0
+    o[1] = 1
+	# DP 진행 - 보텀업 방식
+    for i in range(2,n+1):
+        z[i] = z[i-1]+z[i-2]
+        o[i] = o[i-1]+o[i-2]
 
 T = int(sys.stdin.readline())
 for _ in range(T):
-    zero_cnt = 0
-    one_cnt = 0
+	# DP 테이블 생성 및 초기화
+    z = [0] * 41
+    o = [0] * 41
     n = int(sys.stdin.readline())
     fibo(n)
-    print(zero_cnt,one_cnt)
-
+    print(z[n],o[n])
