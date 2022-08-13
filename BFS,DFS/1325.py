@@ -1,13 +1,13 @@
 # 효율적인 해킹
 import sys
 sys.setrecursionlimit(10**6)
-def dfs(graph,start,visited):
+
+def dfs(start,visited):
     global cnt
-    if visited[start]:
-        return False
+    visited[start] = 1
     for g in graph[start]:
         if not visited[g]:
-            dfs(graph, g, visited)
+            dfs(g, visited)
             cnt += 1
             visited[g] = 1
             return True
@@ -26,10 +26,11 @@ max_cnt = 0
 for i in range(1,N+1):
     cnt = 1
     visited = [0] * (N+1)
-    dfs(graph,i,visited)
+    dfs(i,visited)
     result.append([i,cnt])
     max_cnt = max(cnt,max_cnt)
 
+print(result)
 for a,b in result:
     if b == max_cnt:
         print(a,end=' ')
