@@ -1,6 +1,7 @@
 # 알파벳
 import sys
 sys.setrecursionlimit(10**6)
+
 def dfs(graph,y,x,visited,move):
     # 방문한적 없는 알파벳인 경우
     if not visited[y][x] and graph[y][x] not in lst:
@@ -22,8 +23,8 @@ R,C = map(int,sys.stdin.readline().split())
 graph = [list(sys.stdin.readline().rstrip()) for _ in range(R)]
 # 좌측 상단에서 시작 (0,0)
 
-move1 = [[0, -1], [0, 1], [-1, 0], [1, 0]]
-move2 = [[-1,0],[1,0],[0,-1],[0,1]]
+move1 = [[0, 1],[1,0],[0,-1],[-1, 0]]
+move2 = [[1,0],[0,1],[0,-1],[-1,0]]
 result = 0
 for move in [move1,move2]:
     lst = []
