@@ -1,5 +1,6 @@
 # 그림
 import sys
+sys.setrecursionlimit(10**6)
 def dfs(x,y):
     global cnt
     move = [[0,1],[0,-1],[1,0],[-1,0]]
@@ -24,7 +25,7 @@ tmp = []
 for i in range(n):
     for j in range(m):
         cnt = 0
-        if dfs(i,j) and cnt != 0:
+        if dfs(i,j):
             tmp.append(cnt)
 
 if len(tmp) == 0:
