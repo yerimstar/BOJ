@@ -1,33 +1,60 @@
 # 빙산
 import sys
 from collections import deque
-def bfs(sx,sy):
+import copy
+
+def bfs(x,y):
+    global check,graph
+    tmp = copy.deepcopy(graph)
+    cnt = 1
+    visited = [[False for _ in range(m)] for _ in range(n)]
     q = deque()
-    q.append([sx,sy])
+    q.append([x,y])
+    visited[x][y] = True
     while q:
-        print("q = ",q)
-        visited = [[False for _ in range(m)] for _ in range(n)]
         x,y = q.popleft()
-        visited[x][y] = True
         for mx,my in move:
             dx = x + mx
             dy = y + my
             if 0 <= dx < n and 0 <= dy < m:
-                if not visited[dx][dy] and graph[dx][dy] == 0 and graph[x][y] > 1:
-                    graph[x][y] -= 1
-                if graph[dx][dy] == 0:
-                    visited[dx][dy] = True
-                if graph[dx][dy] != 0:
+                if not visited[dx][dy] and graph[dx][dy]:
+                    cnt += 1
                     q.append([dx,dy])
-        print(graph)
+                    visited[dx][dy] = True
+                elif graph[dx][dy] == 0:
+                    tmp[x][y] -= 1
+        if tmp[x][y] <= 0:
+            tmp[x][y] = 0
+            # print("x,y", x, y)
+            check -= 1
+    # print("tmp = ",tmp)
+    graph = tmp
+    # print("graph after = ",graph)
+    return cnt
 
 n,m = map(int,sys.stdin.readline().split())
 graph = []
+move = [[0,1],[0,-1],[1,0],[-1,0]]
+check = 0
 for _ in range(n):
-    graph.append(list(map(int,sys.stdin.readline().split())))
+    tmp = list(map(int,sys.stdin.readline().split()))
+    for j in range(m):
+        if tmp[j]:
+            check += 1
+    graph.append(tmp)
+# print(graph)
+# print(check)
+num = 0
+tmp = check
 for i in range(n):
     for j in range(m):
-        if graph[i][j] != 0:
-            sx,sy = i,j
-move = [[0,1],[1,0],[-1,0],[0,-1]]
-bfs(sx,sy)
+        if graph[i][j]:
+            cnt = bfs(i,j)
+            if cnt == 0:
+                print(0)
+                exit()
+            if cnt != tmp:
+                print(num)
+                exit()
+            tmp = check
+            num += 1
