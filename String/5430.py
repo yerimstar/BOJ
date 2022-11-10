@@ -2,36 +2,36 @@
 import sys
 from collections import deque
 
-def f(lst,p):
-    lst = deque(lst)
-    q = deque(p)
-    while q:
-        method = q.popleft()
-        if method == 'R':
-            lst.reverse()
-        elif method == 'D':
-            if len(lst) == 0:
-                print("error")
-                return
-            lst.popleft()
-    return list(lst)
-
 T = int(sys.stdin.readline())
 for _ in range(T):
     p = sys.stdin.readline().strip()
-    n = int(sys.stdin.readline())
-    lst = sys.stdin.readline().strip().replace('[','').replace(']','').split(',')
+    n = int(sys.stdin.readline().strip())
+    lst = deque(sys.stdin.readline().strip()[1: -1].split(','))
+    point = True
+    error = False
+
     if n == 0:
+        lst = deque()
+    for method in p:
+        if method == 'R':
+            # 방향 교체
+            if point:
+                point = False
+            else:
+                point = True
+        elif method == 'D':
+            if lst:
+                if point:
+                    lst.popleft()
+                else:
+                    lst.pop()
+            else:
+                error = True
+                break
+    if error:
         print("error")
-        continue
-    result = f(lst,p)
-    if type(result) == list:
-        result = list(map(int, result))
-        print(result)
-
-
-
-
-
-
-
+    elif not point:
+        lst.reverse()
+        print('[' + ','.join(lst) + ']')
+    else:
+        print('[' + ','.join(lst) + ']')
