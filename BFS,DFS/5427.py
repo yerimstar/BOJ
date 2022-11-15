@@ -4,46 +4,35 @@ from collections import deque
 def bfs(sx,sy):
     q = deque(fire)
     visited = [[False for _ in range(w)] for _ in range(h)]
-    for i,j,t in fire:
-        visited[i][j] = True
     s = deque()
-    s.append([sx,sy,0])
-
-    while q:
-        # print("fire = ",q)
-        x,y,t = q.popleft()
-        # print(x,y,t)
-        for mx, my in move:
-            dx = x + mx
-            dy = y + my
-            if 0 <= dx < h and 0 <= dy < w:
-                if not visited[dx][dy] and graph[dx][dy] != '#':
-                    graph[dx][dy] = '*'
-                    visited[dx][dy] = True
-                    q.append([dx, dy, t + 1])
-        if len(q) == 0:
-            while s:
-                sx, sy, st = s.popleft()
-                for mx, my in move:
-                    dx = sx + mx
-                    dy = sy + my
-                    if 0 <= dx < h and 0 <= dy < w:
-                        if graph[dx][dy] == '.':
-                            s.append([dx, dy, st + 1])
-                    else:
-                        return st + 1
-        else:
-            for _ in range(len(s)):
-                sx, sy, st = s.popleft()
-                for mx, my in move:
-                    dx = sx + mx
-                    dy = sy + my
-                    if 0 <= dx < h and 0 <= dy < w:
-                        if graph[dx][dy] == '.':
-                            s.append([dx, dy, st + 1])
-                    else:
-                        return st+1
-    return "IMPOSSIBLE"
+    s.append((sx,sy,0))
+    visited[sx][sy] = True
+    while s:
+        # 불
+        for _ in range(len(q)):
+            x, y, t = q.popleft()
+            for mx, my in move:
+                dx = x + mx
+                dy = y + my
+                if 0 <= dx < h and 0 <= dy < w:
+                    if graph[dx][dy] != '#' and graph[dx][dy] != '*':
+                        graph[dx][dy] = '*'
+                        q.append((dx, dy, t + 1))
+        # 상근
+        for _ in range(len(s)):
+            sx, sy, st = s.popleft()
+            for mx, my in move:
+                dx = sx + mx
+                dy = sy + my
+                if 0 <= dx < h and 0 <= dy < w:
+                    if not visited[dx][dy] and graph[dx][dy] != '#' and graph[dx][dy] != '*':
+                        visited[dx][dy] = True
+                        s.append((dx, dy, st + 1))
+                else:
+                    print(st+1)
+                    return
+    print("IMPOSSIBLE")
+    return
 t = int(sys.stdin.readline())
 for _ in range(t):
     w,h = map(int,sys.stdin.readline().split())
@@ -58,4 +47,4 @@ for _ in range(t):
             elif tmp[j] == '*':
                 fire.append((i,j,0))
         graph.append(tmp)
-    print(bfs(sx,sy))
+    bfs(sx,sy)
