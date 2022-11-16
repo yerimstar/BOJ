@@ -9,16 +9,9 @@ def bfs(x,y,color,cnt):
     q.append((x,y,color,cnt))
     lst.append((x,y,color,cnt))
     visited[x][y] = True
-    check = 1
 
     while q:
         x,y,color,cnt = q.popleft()
-        if check >= 4:
-            graph[x][y] = '.'
-            for x,y,c,cnt in lst:
-                if c == color:
-                    graph[x][y] = '.'
-            return 1
         for mx,my in move:
             dx = x + mx
             dy = y + my
@@ -27,7 +20,13 @@ def bfs(x,y,color,cnt):
                     visited[dx][dy] = True
                     q.append((dx,dy,color,cnt + 1))
                     lst.append((dx,dy,color,cnt + 1))
-                    check += 1
+    if len(lst) >= 4:
+        graph[x][y] = '.'
+        for x, y, c, cnt in lst:
+            if c == color:
+                graph[x][y] = '.'
+        return 1
+
     return 0
 
 def puyo_move():
@@ -59,13 +58,18 @@ move = [[0,1],[1,0],[0,-1],[-1,0]]
 for i in range(12):
     graph.append(list(sys.stdin.readline().strip()))
 
-result = 0
+time = 0
 while True:
+    check = 0
     for i in range(12):
         for j in range(6):
             if graph[i][j] != '.':
-                result += bfs(i,j,graph[i][j],1)
+                check += bfs(i,j,graph[i][j],1)
+    if check > 0:
+        time += 1
+    else:
+        break
     if not puyo_move():
         break
 
-print(result)
+print(time)
