@@ -3,7 +3,8 @@ import sys
 k = int(sys.stdin.readline())
 
 dp = [(0,0) for _ in range(46)]
-dp[0] = (1,0)
+dp[0] = (1,0) # 초기화
+# Bottom-Up 방식
 for i in range(1,46):
     a,b = dp[i-1]
     dp[i] = (b,a+b)
