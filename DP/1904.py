@@ -2,10 +2,9 @@
 import sys
 from math import factorial
 n = int(sys.stdin.readline())
-result = 1 # 1로만 이루어진 01타일
-for i in range(n//2):
-    total = n-(i+1)
-    one = n-(i+1)*2
-    zero = i+1
-    result += (factorial(total)//((factorial(one))*factorial(zero)))
-print(result)
+dp = [0] * 1000001
+dp[1] = 1
+dp[2] = 2
+for i in range(3,n+1):
+    dp[i] = (dp[i-1] + dp[i-2])%15746
+print(dp[n])
