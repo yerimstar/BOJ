@@ -1,11 +1,9 @@
 # 연속 부분 최대 곱
 import sys
 n = int(sys.stdin.readline())
-lst = []
-dp = [0] * (n+1)
+dp = []
 for _ in range(n):
-    lst.append(float(sys.stdin.readline().strip()))
-dp[0] = lst[0]
+    dp.append(float(sys.stdin.readline().strip()))
 for i in range(1,n):
-    dp[i] = max(dp[i-1]*lst[i],lst[i])
-print(round(max(dp),3))
+    dp[i] = max(dp[i-1]*dp[i],dp[i])
+print('%.3f' %(max(dp)))
